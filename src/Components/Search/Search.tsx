@@ -1,5 +1,3 @@
-import "./Search.css";
-
 function Search({ search, setSearch, handleSearch }: any): JSX.Element {
   return (
     <div className="search-engine">
