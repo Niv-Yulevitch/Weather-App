@@ -16,6 +16,12 @@ function Weather(): JSX.Element {
       );
       const data = await response.json();
 
+      const imgData = await fetch(
+        `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+      );
+      const img = await imgData.blob();
+      data.weather[0].icon = URL.createObjectURL(img);
+
       if (data) {
         setWeatherData(data);
         setLoading(false);
@@ -67,6 +73,7 @@ function Weather(): JSX.Element {
             {weatherData && weatherData.weather && weatherData.weather[0]
               ? weatherData.weather[0].description
               : ""}
+          <img src={weatherData?.weather[0]?.icon} alt="weather icon" />
           </p>
           <div className="weather-info">
             <div className="column">
